@@ -1,4 +1,4 @@
-# AI Reviewer Bot (MedTech & Nursing)
+# AI Reviewer Assistant (NLE, MTLE)
 
 Run this app:
 
