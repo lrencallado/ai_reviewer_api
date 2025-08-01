@@ -1,0 +1,18 @@
+[
+  {
+    "id": "nle-mock-001",
+    "question": "What is the first step in the nursing process?",
+    "options": ["Diagnosis", "Assessment", "Planning", "Evaluation"],
+    "answer": "Assessment",
+    "type": "mock",
+    "exam_type": "NLE",
+    "topic": "Fundamentals of Nursing"
+  },
+  {
+    "id": "nle-ask-001",
+    "content": "The nurse must prioritize airway before breathing and circulation...",
+    "type": "ask",
+    "exam_type": "NLE",
+    "topic": "Nursing Prioritization"
+  }
+]

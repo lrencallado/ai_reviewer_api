@@ -1,0 +1,24 @@
+[
+  {
+    "id": "nle-001",
+    "question": "Mario listens to Richard’s bilateral sounds and finds that congestion is in the upper lobes...",
+    "options": [
+      "Client lying on his back then flat on his abdomen...",
+      "Client seated upright in bed...",
+      "Client lying flat on his back...",
+      "Client lying on his right then left side..."
+    ],
+    "answer": "B",
+    "rationale": "This position best supports drainage from apical segments.",
+    "topic": "Pulmonary Care",
+    "exam_type": "NLE"
+  },
+  {
+    "id": "nle-002",
+    "question": "When documenting outcome of Richard’s treatment Mario should include the following EXCEPT...",
+    "options": ["A", "B", "C", "D"],
+    "answer": "C",
+    "topic": "Documentation",
+    "exam_type": "NLE"
+  }
+]

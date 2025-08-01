@@ -1,0 +1,12 @@
+fastapi
+faiss-cpu
+uvicorn[standard]
+sqlmodel
+asyncpg
+greenlet
+python-dotenv
+passlib[bcrypt]
+pyjwt
+openai
+python-multipart
+PyPDF2
