@@ -3,24 +3,15 @@
 Run this app:
 
 ```bash
+pip install -r requirements.txt
+```
+
+```bash
 uvicorn app.main:app --reload
 ```
 
-To (re)build index:
+To (re)build index using specific file and path for now:
 ```bash
 python app/internal/builder.py
 ```
-
-POST a question to:
-```http
-POST /ask
-{ "question": "Explain ELISA" }
-```
-
-Update user:
-```bash
-PUT /admin/users/{username}
-Authorization: Bearer <admin_token>
-Content-Type: application/json
-
 ---
