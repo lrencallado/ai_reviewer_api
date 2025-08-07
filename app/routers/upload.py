@@ -6,8 +6,7 @@ import os
 import re
 import faiss
 import numpy as np
-from openai import OpenAI
-from app.config import CHUNKS_FILE, CHUNKS_PATH, EMBEDDING_MODEL, INDEX_PATH
+from app.config import CHUNKS_PATH, EMBEDDING_MODEL, INDEX_PATH
 from app.dependencies import get_openai_client
 
 router = APIRouter(prefix="/upload", tags=["Upload PDF"])
