@@ -1,15 +1,19 @@
 import os
 from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
 
-load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-EMBEDDING_MODEL = "text-embedding-3-small"
-GPT_MODEL = os.getenv("GPT_MODEL")
-INDEX_PATH = "faiss_index/"
-CHUNKS_FILE = "app/data/chunks.json"
-CHUNKS_PATH = "app/data/"
-SECRET_KEY = os.getenv("SECRET_KEY", "super-secret")
-ALGORITHM = os.getenv("ALGORITHM")
-ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
-DATABASE_URL = os.getenv("DATABASE_URL")
+class Settings(BaseSettings):
+    openai_api_key: str
+    embedding_model: str = "text-embedding-3-small"
+    gpt_model: str = "gpt-3.5-turbo"
+    index_path: str = "faiss_index/"
+    chunks_file: str = "app/data/chunks.json"
+    chunks_path: str = "app/data/"
+    secret_key: str = "super-secret"
+    algorithm: str = "HS256"
+    access_token_expires_minutes: int = 60
+    database_url: str
+    model_config = SettingsConfigDict(env_file=BASE_DIR / ".env")

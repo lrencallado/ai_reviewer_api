@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from app.routers import auth, reviewer, users, upload
 from app.database import create_db_and_tables
 from contextlib import asynccontextmanager
+from . import config
+from functools import lru_cache
 
 app = FastAPI(title="AI Reviewer Assistant")
 
@@ -10,6 +12,12 @@ app = FastAPI(title="AI Reviewer Assistant")
 async def lifespan(app: FastAPI):
     await create_db_and_tables()
     yield
+
+@lru_cache
+def get_settings():
+    return config.Settings()
+
+settings = get_settings()
 
 app.router.lifespan_context = lifespan
 

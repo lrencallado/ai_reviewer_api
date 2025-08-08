@@ -7,7 +7,7 @@ from app.models import User, Token
 from typing import Annotated
 from sqlmodel.ext.asyncio.session import AsyncSession
 from datetime import timedelta
-from app.config import ACCESS_TOKEN_EXPIRE_MINUTES
+from app.main import settings
 
 router = APIRouter(tags=["Auth"])
 
@@ -25,7 +25,7 @@ async def login_for_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=settings.access_token_expires_minutes)
     access_token = create_access_token(
         data={"sub": user.username, "scopes": user.scopes},
         expires_delta=access_token_expires

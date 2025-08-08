@@ -6,11 +6,11 @@ from passlib.context import CryptContext
 from sqlmodel import select
 from app.models import User
 from app.database import get_session
-from app.config import OPENAI_API_KEY, SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 import jwt
 from jwt.exceptions import InvalidTokenError
+from app.main import settings
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI(api_key=settings.openai_api_key)
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -37,9 +37,9 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     if not isinstance(data, dict):
         raise TypeError("Expected dict for data, got: {}".format(type(data).__name__))
     to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    expire = datetime.now(timezone.utc) + (expires_delta or timedelta(minutes=settings.access_token_expires_minutes))
     to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return jwt.encode(to_encode, settings.secret_key, algorithm=settings.algorithm)
 
 def get_openai_client():
     return client
@@ -55,7 +55,7 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
         username = payload.get("sub")
         if username is None:
             raise credentials_exception

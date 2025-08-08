@@ -6,8 +6,8 @@ import os
 import re
 import faiss
 import numpy as np
-from app.config import CHUNKS_PATH, EMBEDDING_MODEL, INDEX_PATH
 from app.dependencies import get_openai_client
+from app.main import settings
 
 router = APIRouter(prefix="/upload", tags=["Upload PDF"])
 
@@ -93,7 +93,7 @@ def build_faiss_index(source_file: str, index_path: str):
         return
 
     openai = get_openai_client()
-    vectors = [openai.embeddings.create(input=text, model=EMBEDDING_MODEL).data[0].embedding for text in texts]
+    vectors = [openai.embeddings.create(input=text, model=settings.embedding_model).data[0].embedding for text in texts]
 
     dimension = len(vectors[0])
     index = faiss.IndexFlatL2(dimension)
@@ -111,7 +111,7 @@ async def upload_nle_pdf(
         raise HTTPException(status_code=400, detail="Only PDF files are supported")
 
     parsed_chunks = parse_pdf(file)
-    chunks_nle_file = CHUNKS_PATH + "chunks_nle.json"
+    chunks_nle_file = settings.chunks_path + "chunks_nle.json"
     faiss_index_filename = "index_nle.faiss"
 
     if not chunk_type:
@@ -123,6 +123,6 @@ async def upload_nle_pdf(
         structured = extract_mock_questions(parsed_chunks) if chunk_type == "mock" else parsed_chunks
         deduplicate_and_add(structured, chunk_type=chunk_type, exam_type="NLE", target_file=chunks_nle_file)
 
-    build_faiss_index(chunks_nle_file, INDEX_PATH + faiss_index_filename)
+    build_faiss_index(chunks_nle_file, settings.index_path + faiss_index_filename)
 
     return {"message": f"Uploaded and indexed chunks to {chunks_nle_file}"}
