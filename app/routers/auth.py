@@ -7,7 +7,7 @@ from app.models import User, Token
 from typing import Annotated
 from sqlmodel.ext.asyncio.session import AsyncSession
 from datetime import timedelta
-from app.main import settings
+from app.config import settings
 
 router = APIRouter(tags=["Auth"])
 

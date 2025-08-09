@@ -8,7 +8,7 @@ from app.models import User
 from app.database import get_session
 import jwt
 from jwt.exceptions import InvalidTokenError
-from app.main import settings
+from app.config import settings
 
 client = OpenAI(api_key=settings.openai_api_key)
 
@@ -22,13 +22,13 @@ oauth2_scheme = OAuth2PasswordBearer(
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-def authenticate_user(fake_db, username: str, password: str):
-    user = get_user(fake_db, username)
-    if not user:
-        return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user
+# def authenticate_user(fake_db, username: str, password: str):
+#     user = get_user(fake_db, username)
+#     if not user:
+#         return False
+#     if not verify_password(password, user.hashed_password):
+#         return False
+#     return user
 
 def get_password_hash(password):
     return pwd_context.hash(password)

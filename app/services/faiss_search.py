@@ -1,7 +1,7 @@
 import faiss
 import numpy as np
 import json
-from app.main import settings
+from app.config import settings
 
 class VectorSearch:
     def __init__(self, dim: int):

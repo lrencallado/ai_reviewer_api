@@ -2,7 +2,7 @@ import json
 import numpy as np
 import faiss
 from app.services.embedder import embed_text
-from app.main import settings
+from app.config import settings
 
 def build_faiss_index():
     with open(settings.chunks_file) as f:

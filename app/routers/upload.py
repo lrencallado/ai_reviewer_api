@@ -7,7 +7,7 @@ import re
 import faiss
 import numpy as np
 from app.dependencies import get_openai_client
-from app.main import settings
+from app.config import settings
 
 router = APIRouter(prefix="/upload", tags=["Upload PDF"])
 

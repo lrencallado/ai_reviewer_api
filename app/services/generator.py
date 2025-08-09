@@ -1,5 +1,5 @@
 from app.dependencies import get_openai_client
-from app.main import settings
+from app.config import settings
 
 def generate_response(user_query: str, context_chunks: list):
     if context_chunks:

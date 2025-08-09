@@ -1,5 +1,5 @@
 from app.dependencies import get_openai_client
-from app.main import settings
+from app.config import settings
 
 def embed_text(text: str):
     client = get_openai_client()
