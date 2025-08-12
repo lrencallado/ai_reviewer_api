@@ -1,5 +1,5 @@
 from app.dependencies import get_openai_client
-from app.config import settings
+from app.config import SETTINGS
 
 def generate_response(user_query: str, context_chunks: list):
     if context_chunks:
@@ -21,7 +21,7 @@ This topic wasn't found in the provided reviewer materials. Please provide a gen
 """
     client = get_openai_client()
     response = client.chat.completions.create(
-        model=settings.gpt_model,
+        model=SETTINGS.gpt_model,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4
     )

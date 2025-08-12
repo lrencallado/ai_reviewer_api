@@ -1,12 +1,12 @@
 import faiss
 import numpy as np
 import json
-from app.config import settings
+from app.config import SETTINGS
 
 class VectorSearch:
     def __init__(self, dim: int):
-        self.index = faiss.read_index(settings.index_path)
-        with open(settings.chunks_file) as f:
+        self.index = faiss.read_index(SETTINGS.index_path)
+        with open(SETTINGS.chunks_file) as f:
             self.chunks = json.load(f)
 
     def search(self, query_embedding, top_k=3, score_threshold=0.75):

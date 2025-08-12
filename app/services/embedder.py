@@ -1,10 +1,10 @@
 from app.dependencies import get_openai_client
-from app.config import settings
+from app.config import SETTINGS
 
 def embed_text(text: str):
     client = get_openai_client()
     response = client.embeddings.create(
-        model=settings.embedding_model,
+        model=SETTINGS.embedding_model,
         input=[text]
     )
     return response.data[0].embedding
