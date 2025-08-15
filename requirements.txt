@@ -7,3 +7,6 @@ passlib[bcrypt]
 pyjwt
 openai
 PyPDF2
+pdfplumber
+pdf2image
+pytesseract
